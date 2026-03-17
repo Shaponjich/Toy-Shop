@@ -1,0 +1,26 @@
+.auth-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+}
+
+.auth-card {
+  width: 400px;
+  padding: 20px;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.error-text {
+  color: #f44336;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+mat-card-footer {
+  padding: 20px;
+  text-align: center;
+}

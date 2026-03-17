@@ -1,0 +1,93 @@
+.cart-item-card {
+  margin-bottom: 20px;
+  padding: 15px;
+}
+
+.cart-item-flex {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.cart-img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cart-item-details {
+  flex: 2;
+}
+
+.cart-item-actions {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+}
+
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.rezervisano {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.pristiglo {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.rating-section mat-icon {
+  cursor: pointer;
+  color: #ccc;
+}
+
+.rating-section mat-icon.filled {
+  color: #fbc02d;
+}
+
+.rating-section mat-icon.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.lock-hint {
+  color: #888;
+  margin-left: 10px;
+}
+
+.tiny-star {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  color: #ccc;
+}
+
+.tiny-star.filled {
+  color: #fbc02d;
+}
+
+.rating-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.rating-section span {
+  font-weight: 500;
+}
+
+.rating-section mat-icon {
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+}

@@ -1,0 +1,91 @@
+<div class="detail-container">
+  @if (loading) {
+  <div class="loading-spinner">Učitavanje podataka...</div>
+  }
+
+  @if (toy) {
+  <mat-card class="product-card">
+    <div class="flex-layout">
+      <div class="image-section">
+        <img [src]="getImageUrl(toy.imageUrl)" [alt]="toy.name">
+      </div>
+
+      <div class="info-section">
+        <mat-card-header>
+          <mat-card-title>{{ toy.name }}</mat-card-title>
+          <mat-card-subtitle>Datum proizvodnje: {{ toy.productionDate | date:'dd.MM.yyyy' }}</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <mat-chip-set>
+            @if (toy.type) {
+            <mat-chip>{{ toy.type.name }}</mat-chip>
+            } @else {
+            <mat-chip disabled>Tip nepoznat</mat-chip>
+            }
+
+            @if (toy.ageGroup) {
+            <mat-chip color="accent" selected>{{ toy.ageGroup.name }}</mat-chip>
+            } @else {
+            <mat-chip disabled>Uzrast nepoznat</mat-chip>
+            }
+
+            <mat-chip>{{ toy.targetGroup }}</mat-chip>
+          </mat-chip-set>
+
+          <mat-card-subtitle>Datum proizvodnje: {{ toy?.productionDate | date:'dd.MM.yyyy' }}</mat-card-subtitle>
+
+          <p class="description">{{ toy.description }}</p>
+
+          <mat-divider></mat-divider>
+
+          <div class="price-container">
+            <span class="price-label">Cena:</span>
+            <span class="price-value">{{ toy.price | currency:'RSD ':'symbol':'1.0-0' }}</span>
+          </div>
+        </mat-card-content>
+
+        <mat-card-actions>
+          <button mat-stroked-button color="primary" routerLink="/toys">
+            <mat-icon>arrow_back</mat-icon> NAZAD
+          </button>
+          @if (isInCart()) {
+          <button mat-raised-button disabled>VEĆ U KORPI</button>
+          } @else {
+          <button mat-raised-button color="accent" (click)="addToCart()">
+            <mat-icon>shopping_cart</mat-icon> REZERVIŠI
+          </button>
+          }
+        </mat-card-actions>
+      </div>
+    </div>
+  </mat-card>
+  }
+</div>
+
+<div class="reviews-container">
+  <h3>Recenzije kupaca 💬</h3>
+
+  @if (reviews.length === 0) {
+  <p>Još uvek nema recenzija za ovu igračku.</p>
+  } @else {
+  @for (review of reviews; track review.date) {
+  <mat-card class="review-card">
+    <div class="review-header">
+      <div class="user-info">
+        <mat-icon class="user-icon">account_circle</mat-icon>
+        <span class="user-name">{{ review.userName }}</span>
+      </div>
+      <div class="user-rating">
+        @for (star of [1,2,3,4,5]; track star) {
+        <mat-icon class="tiny-star" [class.filled]="star <= review.rating">star</mat-icon>
+        }
+      </div>
+    </div>
+    <mat-card-footer>
+      <small>Ocenjeno: {{ review.date | date:'dd.MM.yyyy' }}</small>
+    </mat-card-footer>
+  </mat-card>
+  }
+  }
+</div>

@@ -1,0 +1,24 @@
+<div class="home-page">
+  <div class="hero">
+    <h1>Dobrodošli u ToyShop 🧸</h1>
+    <p>Pronađite savršenu igračku za svoje dete. Pregledajte našu ponudu i rezervišite odmah.</p>
+    <a routerLink="/toys" class="hero-btn">Pogledaj igračke</a>
+  </div>
+
+  <div class="featured">
+    <h2>Istaknute igračke</h2>
+    <div class="featured-grid">
+      @for (toy of featuredToys; track toy) {
+      <div class="featured-card">
+        <img [src]="getImageUrl(toy.imageUrl)" [alt]="toy.name" />
+        <div class="featured-info">
+          <h3>{{ toy.name }}</h3>
+          <p>{{ toy.type?.name }}</p>
+          <p class="price">{{ toy.price | currency:'RSD ':'symbol':'1.0-0' }}</p>
+          <a [routerLink]="['/toys', toy.permalink]">Pogledaj</a>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>

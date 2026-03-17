@@ -1,0 +1,76 @@
+<div class="cart-container">
+  <h2>🛒 Moja korpa rezervacija</h2>
+
+  @if (items.length === 0) {
+  <mat-card class="empty-message">
+    <mat-card-content>Vaša korpa je prazna.</mat-card-content>
+  </mat-card>
+  } @else {
+  <div class="cart-list">
+    @for (item of items; track item.id) {
+    <mat-card class="cart-item-card">
+      <div class="cart-item-flex">
+        <img [src]="getImageUrl(item.toy.imageUrl)" class="cart-img">
+
+        <div class="cart-item-details">
+          <mat-card-header>
+            <mat-card-title>{{ item.toy.name }}</mat-card-title>
+            <mat-card-subtitle>{{ item.toy.type.name }} | {{ item.toy.ageGroup.name }}</mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content>
+            <p class="description">{{ item.toy.description }}</p>
+            <div class="meta-info">
+              <span><strong>Ciljna grupa:</strong> {{ item.toy.targetGroup }}</span>
+              <span><strong>Datum:</strong> {{ item.toy.productionDate | date:'dd.MM.yyyy' }}</span>
+            </div>
+            <p class="price">Cena: {{ item.toy.price | currency:'RSD ':'symbol':'1.0-0' }}</p>
+
+            <div class="status-section">
+              <strong>Status: </strong>
+              <span class="status-badge" [class]="item.status">{{ item.status }}</span>
+            </div>
+
+            <div class="rating-section">
+              <span>Ocena: </span>
+              @for (star of [1,2,3,4,5]; track star) {
+              <mat-icon [class.filled]="item.rating && star <= item.rating"
+                [class.disabled]="item.status !== 'pristiglo'"
+                (click)="item.status === 'pristiglo' ? rateItem(item.id, star) : null">
+                {{ item.rating && star <= item.rating ? 'star' : 'star_border' }} </mat-icon>
+                  }
+                  @if (item.status !== 'pristiglo') {
+                  <small class="lock-hint">(Zaključano dok ne stigne)</small>
+                  }
+            </div>
+          </mat-card-content>
+        </div>
+
+        <div class="cart-item-actions">
+          @if (item.status === 'rezervisano') {
+          <mat-form-field appearance="outline">
+            <mat-label>Promeni status</mat-label>
+            <mat-select [(ngModel)]="item.status" (selectionChange)="updateStatus(item)">
+              <mat-option value="rezervisano">Rezervisano</mat-option>
+              <mat-option value="pristiglo">Pristiglo</mat-option>
+              <mat-option value="otkazano">Otkazano</mat-option>
+            </mat-select>
+          </mat-form-field>
+          }
+
+          @if (item.status === 'pristiglo' || item.status === 'otkazano') {
+          <button mat-flat-button color="warn" (click)="removeItem(item.id)">
+            <mat-icon>delete</mat-icon> UKLONI IZ KORPE
+          </button>
+          }
+        </div>
+      </div>
+    </mat-card>
+    }
+  </div>
+
+  <mat-card class="total-bar">
+    <h3>Ukupna cena: {{ getTotal() | currency:'RSD ':'symbol':'1.0-0' }}</h3>
+  </mat-card>
+  }
+</div>

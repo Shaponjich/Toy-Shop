@@ -1,0 +1,96 @@
+.home-page {
+  padding: 20px 0;
+}
+
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #3f51b5, #7986cb);
+  color: white;
+  border-radius: 12px;
+  margin-bottom: 40px;
+}
+
+.hero h1 {
+  font-size: 2.4rem;
+  margin-bottom: 16px;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  margin-bottom: 24px;
+  opacity: 0.9;
+}
+
+.hero-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  background-color: white;
+  color: #3f51b5;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.hero-btn:hover {
+  background-color: #e8eaf6;
+}
+
+.featured h2 {
+  margin-bottom: 20px;
+  font-size: 1.6rem;
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.featured-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.featured-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.featured-info {
+  padding: 12px;
+}
+
+.featured-info h3 {
+  margin: 0 0 6px 0;
+  font-size: 1rem;
+}
+
+.featured-info p {
+  margin: 2px 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.price {
+  font-weight: bold;
+  color: #3f51b5 !important;
+}
+
+.featured-info a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 14px;
+  background-color: #3f51b5;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.featured-info a:hover {
+  background-color: #303f9f;
+}

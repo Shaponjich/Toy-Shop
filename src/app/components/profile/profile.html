@@ -1,0 +1,57 @@
+<div class="profile-container">
+  <mat-card class="profile-card">
+    <mat-card-header>
+      <mat-card-title>Moj Profil 👤</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      @if (!editMode && user) {
+      <div class="info-grid">
+        <p><strong>Ime i prezime:</strong> {{user.firstName}} {{user.lastName}}</p>
+        <p><strong>Email:</strong> {{user.email}}</p>
+        <p><strong>Telefon:</strong> {{user.phone}}</p>
+        <p><strong>Adresa:</strong> {{user.address}}</p>
+        <p><strong>Omiljene igračke:</strong> {{user.favoriteToyTypes.join(', ')}}</p>
+      </div>
+      <button mat-raised-button color="primary" (click)="startEdit()">
+        <mat-icon>edit</mat-icon> IZMENI PODATKE
+      </button>
+      }
+
+      @if (editMode && editData) {
+      <form class="edit-form">
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Ime</mat-label>
+            <input matInput [(ngModel)]="editData.firstName" name="fn">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Prezime</mat-label>
+            <input matInput [(ngModel)]="editData.lastName" name="ln">
+          </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Telefon</mat-label>
+          <input matInput [(ngModel)]="editData.phone" name="ph">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Adresa</mat-label>
+          <input matInput [(ngModel)]="editData.address" name="addr">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Omiljeni tipovi igračaka (odvojeno zarezom)</mat-label>
+          <input matInput [(ngModel)]="favoriteToyTypesString" name="favs">
+        </mat-form-field>
+
+        <div class="actions">
+          <button mat-raised-button color="primary" (click)="saveEdit()">SAČUVAJ</button>
+          <button mat-button (click)="editMode = false">ODUSTANI</button>
+        </div>
+      </form>
+      }
+    </mat-card-content>
+  </mat-card>
+</div>

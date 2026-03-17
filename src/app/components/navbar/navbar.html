@@ -1,0 +1,18 @@
+<mat-toolbar color="primary" class="navbar-toolbar">
+  <span routerLink="/" style="cursor: pointer">🧸 ToyShop</span>
+
+  <span class="spacer"></span>
+
+  <div class="nav-links">
+    <button mat-button routerLink="/toys">Igračke</button>
+
+    @if (auth.isLoggedIn()) {
+    <button mat-button routerLink="/cart">Korpa</button>
+    <button mat-button routerLink="/profile">Profil</button>
+    <button mat-raised-button color="warn" (click)="logout()">Odjavi se</button>
+    } @else {
+    <button mat-button routerLink="/login">Prijava</button>
+    <button mat-raised-button color="accent" routerLink="/register">Registracija</button>
+    }
+  </div>
+</mat-toolbar>
